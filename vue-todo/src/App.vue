@@ -2,17 +2,20 @@
   <div id="app">
     <TodoHeader />
     <TodoInput />
+    <TodoList />
   </div>
 </template>
 
 <script>
 import TodoHeader from "./components/TodoHeader";
 import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
 
 export default {
   components: {
     TodoHeader,
     TodoInput,
+    TodoList,
   },
 };
 </script>
