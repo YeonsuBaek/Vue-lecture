@@ -1,9 +1,17 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <TodoHeader />
+  </div>
 </template>
 
 <script>
-export default {};
+import TodoHeader from "./components/TodoHeader";
+
+export default {
+  components: {
+    TodoHeader,
+  },
+};
 </script>
 
 <style>
