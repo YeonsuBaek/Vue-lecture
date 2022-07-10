@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <TodoHeader />
+    <TodoInput />
   </div>
 </template>
 
 <script>
 import TodoHeader from "./components/TodoHeader";
+import TodoInput from "./components/TodoInput";
 
 export default {
   components: {
     TodoHeader,
+    TodoInput,
   },
 };
 </script>
