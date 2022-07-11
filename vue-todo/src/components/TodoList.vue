@@ -1,8 +1,21 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todoItem, index) in todoItems" :key="todoItem" class="shadow">
-        {{ todoItem }}
+      <li
+        v-for="(todoItem, index) in todoItems"
+        :key="todoItem.item"
+        class="shadow"
+      >
+        <i
+          class="fa fa-check checkBtn"
+          :class="{ checkBtnCompleted: todoItem.completed }"
+          @click="toggleComplete(todoItem)"
+        >
+        </i>
+
+        <span :class="{ textCompleted: todoItem.completed }">
+          {{ todoItem.item }}
+        </span>
 
         <span class="removeBtn" @click="removeTodo(todoItem, index)">
           <i class="fa fa-trash"></i>
@@ -24,11 +37,18 @@ export default {
       localStorage.removeItem(todoItem);
       this.todoItems.splice(index, 1);
     },
+    toggleComplete(todoItem) {
+      todoItem.completed = !todoItem.completed;
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    },
   },
   created() {
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
-        this.todoItems.push(localStorage.key(i));
+        this.todoItems.push(
+          JSON.parse(localStorage.getItem(localStorage.key(i)))
+        );
       }
     }
   },
@@ -63,7 +83,7 @@ li {
 .checkBtn {
   line-height: 45px;
   color: #62acde;
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .checkBtnCompleted {
