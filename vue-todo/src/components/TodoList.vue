@@ -9,7 +9,7 @@
         <i
           class="fa fa-check checkBtn"
           :class="{ checkBtnCompleted: todoItem.completed }"
-          @click="toggleComplete(todoItem)"
+          @click="toggleComplete(todoItem, index)"
         >
         </i>
 
@@ -32,10 +32,8 @@ export default {
     removeTodo(todoItem, index) {
       this.$emit("removeItem", todoItem, index);
     },
-    toggleComplete(todoItem) {
-      todoItem.completed = !todoItem.completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    toggleComplete(todoItem, index) {
+      this.$emit("toggleItem", todoItem, index);
     },
   },
 };
@@ -70,6 +68,7 @@ li {
   line-height: 45px;
   color: #62acde;
   margin-right: 8px;
+  cursor: pointer;
 }
 
 .checkBtnCompleted {
