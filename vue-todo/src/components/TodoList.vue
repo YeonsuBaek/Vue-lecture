@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li
         v-for="(todoItem, index) in propsdata"
         :key="todoItem.item"
@@ -21,7 +21,7 @@
           <i class="fa fa-trash"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -78,5 +78,16 @@ li {
 .textCompleted {
   text-decoration: line-through;
   color: #b3adad;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 500ms;
+}
+
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
