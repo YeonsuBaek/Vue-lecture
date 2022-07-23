@@ -6,7 +6,12 @@
     </span>
 
     <ModalComponent :show="showModal" @close="showModal = false">
-      <h3 slot="header">custom header</h3>
+      <h3 slot="header">
+        경고!
+        <i class="closeModalBtn fa fa-times" @click="showModal = false"></i>
+      </h3>
+
+      <p slot="body">아무것도 입력하지 않았습니다</p>
     </ModalComponent>
   </div>
 </template>
@@ -29,6 +34,8 @@ export default {
       if (this.newTodoItem !== "") {
         this.$emit("addTodoItem", this.newTodoItem);
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
     clearInput: function () {
@@ -73,5 +80,9 @@ input:focus {
 .addBtn {
   color: #fff;
   vertical-align: middle;
+}
+
+.closeModalBtn {
+  color: #42b983;
 }
 </style>
