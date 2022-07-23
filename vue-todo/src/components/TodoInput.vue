@@ -4,14 +4,24 @@
     <span class="addContainer" @click="addTodo">
       <i class="fa fa-plus addBtn"></i>
     </span>
+
+    <ModalComponent :show="showModal" @close="showModal = false">
+      <h3 slot="header">custom header</h3>
+    </ModalComponent>
   </div>
 </template>
 
 <script>
+import ModalComponent from "./common/ModalComponent";
+
 export default {
+  components: {
+    ModalComponent,
+  },
   data() {
     return {
       newTodoItem: "",
+      showModal: false,
     };
   },
   methods: {
